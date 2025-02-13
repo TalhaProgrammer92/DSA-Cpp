@@ -99,5 +99,3 @@ int main() {
 # **Conclusion**  
 - Use **arrays** when the size is known and fixed for better performance.  
 - Use **vectors** when dynamic resizing and flexibility are needed.  
-
-Would you like a deeper dive into vector operations or performance comparisons? 🚀😊
