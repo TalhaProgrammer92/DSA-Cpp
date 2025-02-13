@@ -65,13 +65,9 @@ Kadane’s Algorithm follows a **dynamic programming** approach to find the **ma
 ### **Recurrence Relation:**  
 Let `max_sum` be the global maximum subarray sum and `current_sum` be the sum of the current subarray ending at index `i`.
 
-\[
-current\_sum = \max(arr[i], current\_sum + arr[i])
-\]
+current_sum = max(arr[i], current_sum + arr[i])
 
-\[
-max\_sum = \max(max\_sum, current\_sum)
-\]
+max_sum = \max(max_sum, current_sum)
 
 ### **Explanation:**
 1. **Choice 1:** Start a new subarray at `arr[i]` → `arr[i]`
