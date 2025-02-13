@@ -38,3 +38,9 @@ int main()
     // Output would be 4
     cout << Solution().singleNumber(nums) << endl;
 }
+
+/*
+    Output:
+
+    4
+*/

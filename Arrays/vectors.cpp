@@ -19,3 +19,9 @@ int main()
     for (/* const */ int element : my_vector)     // For-each loop
         cout << element << " ";
 }
+
+/*
+    Output:
+    
+    Vector elements: 10 20 30 40
+*/
