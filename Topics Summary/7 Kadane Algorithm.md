@@ -57,3 +57,42 @@ Kadane’s Algorithm helps find the period with the **maximum cumulative profit*
 int stockChanges[] = {-3, 5, -2, 9, -8, 4, 6, -1};
 ```
 Kadane’s Algorithm will find the most **profitable streak**, helping investors **decide the best buying/selling period**.
+
+## **Mathematical Formula**  
+
+Kadane’s Algorithm follows a **dynamic programming** approach to find the **maximum subarray sum** efficiently.
+
+### **Recurrence Relation:**  
+Let `max_sum` be the global maximum subarray sum and `current_sum` be the sum of the current subarray ending at index `i`.
+
+\[
+current\_sum = \max(arr[i], current\_sum + arr[i])
+\]
+
+\[
+max\_sum = \max(max\_sum, current\_sum)
+\]
+
+### **Explanation:**
+1. **Choice 1:** Start a new subarray at `arr[i]` → `arr[i]`
+2. **Choice 2:** Extend the current subarray by adding `arr[i]` → `current_sum + arr[i]`
+3. **Update `max_sum`** to store the maximum sum found so far.
+
+### **Example Calculation:**
+For `arr = {-2, 1, -3, 4, -1, 2, 1, -5, 4}`  
+
+| i  | arr[i] | current_sum (max(arr[i], current_sum + arr[i])) | max_sum |
+|----|--------|---------------------------------|---------|
+| 0  | -2     | -2                              | -2      |
+| 1  |  1     | **max(1, -2 + 1) = 1**          | 1       |
+| 2  | -3     | **max(-3, 1 + (-3)) = -2**      | 1       |
+| 3  |  4     | **max(4, -2 + 4) = 4**          | 4       |
+| 4  | -1     | **max(-1, 4 + (-1)) = 3**       | 4       |
+| 5  |  2     | **max(2, 3 + 2) = 5**           | 5       |
+| 6  |  1     | **max(1, 5 + 1) = 6**           | 6       |
+| 7  | -5     | **max(-5, 6 + (-5)) = 1**       | 6       |
+| 8  |  4     | **max(4, 1 + 4) = 5**           | 6       |
+
+Final **max_sum = 6**, from subarray `[4, -1, 2, 1]`.
+
+This recurrence relation ensures **O(n) time complexity**, making Kadane’s Algorithm optimal for finding the **maximum subarray sum**. 🚀
