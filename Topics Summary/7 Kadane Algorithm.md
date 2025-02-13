@@ -58,8 +58,9 @@ int stockChanges[] = {-3, 5, -2, 9, -8, 4, 6, -1};
 ```
 Kadane’s Algorithm will find the most **profitable streak**, helping investors **decide the best buying/selling period**.
 
-## **Mathematical Formula**  
+---
 
+## **Mathematical Formula**  
 Kadane’s Algorithm follows a **dynamic programming** approach to find the **maximum subarray sum** efficiently.
 
 ### **Recurrence Relation:**  
