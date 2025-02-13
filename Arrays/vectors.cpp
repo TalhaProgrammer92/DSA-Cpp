@@ -16,6 +16,6 @@ int main()
     
     // Print the vector
     cout << "Vector elements: ";
-    for (const int element : my_vector)     // For-each loop
+    for (/* const */ int element : my_vector)     // For-each loop
         cout << element << " ";
 }
