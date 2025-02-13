@@ -34,5 +34,7 @@ public:
 int main()
 {
     vector<int> nums = {4, 1, 2, 1, 2};
+    
+    // Output would be 4
     cout << Solution().singleNumber(nums) << endl;
 }
