@@ -4,7 +4,7 @@
 using namespace std;
 
 // ? Given a non-empty array of integers 'nums', every element eppears twice except for one. Find the single one.
-// TODO: You must implement a solution with a linear runtime complexity and use only constant extra space.
+// TODO: You must implement a solution with a linear runtime complexity and use only constant extra space (use single variable for result).
 
 /* 
 ==================================
