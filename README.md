@@ -1,2 +1,5 @@
-# DSA-Cpp
-Repository to store my DSA programs written in C++
+# DSA C++
+
+## About
+- Created by myself on Feb 13, 2025 CE
+- Store DSA programs of my University (BSCS-IV)
