@@ -49,5 +49,5 @@ int main()
 
     Sum of the pair (2, 7) is 9
 
-    Time Complexity: 
+    Time Complexity: O(n)
 */
