@@ -36,6 +36,6 @@ int main()
     Output:
 
     Sum of the pair (2, 7) is 9
-    
+
     Time Complexity: O(n^2)
 */
