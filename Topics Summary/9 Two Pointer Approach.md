@@ -1,0 +1,2 @@
+# Two Pointer Approach
+The **two-pointer approach** is an efficient technique used to solve problems involving searching, sorting, or finding pairs in a sorted array. It involves using two pointers that traverse the array from different directions (e.g., one from the start and the other from the end) to optimize time complexity, often reducing it from **O(n²) to O(n)**. It is commonly used in problems like finding pairs with a given sum, merging sorted arrays, and removing duplicates.
