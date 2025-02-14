@@ -11,7 +11,7 @@ This repository contains **Data Structures and Algorithms (DSA) implementations 
 ```
 📦 DSA-Cpp
  ┣ 📂 Arrays
- ┣ 📂 LinkedLists
+ ┣ 📂 Linked Lists
  ┣ 📂 Stacks
  ┣ 📂 Queues
  ┣ 📂 Trees
