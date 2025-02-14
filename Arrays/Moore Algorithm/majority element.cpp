@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// ? Find out majority element (appears more than n/2 times) in an array by using Moore's Algorithm.
+// ? Find out majority element (appears more than n/2 times) in an array by using Moore's Voting Algorithm.
 // TODO: Array = {1, 2, 2, 1, 1}, Majority Element = 1
 
 class Solution{
