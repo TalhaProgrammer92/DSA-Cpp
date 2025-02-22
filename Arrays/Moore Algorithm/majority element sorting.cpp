@@ -16,7 +16,7 @@ public:
         sort(nums.begin(), nums.end()); //* Sort the array.
 
         //* Count the number of times the current element appears in the array.
-        for (int i = 0; i < nums.size(); i++)
+        for (int i = 0; i < nums.size() - 1; i++)
         {
             //* If current element is same as the next element, increment the count.
             if (nums[i] == nums[i + 1])
