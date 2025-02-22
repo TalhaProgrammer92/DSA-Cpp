@@ -15,9 +15,10 @@ public:
         int count = 1, limit = nums.size() / 2;
         sort(nums.begin(), nums.end()); //* Sort the array.
 
-        // Count the number of times the current element appears in the array.
+        //* Count the number of times the current element appears in the array.
         for (int i = 0; i < nums.size(); i++)
         {
+            //* If current element is same as the next element, increment the count.
             if (nums[i] == nums[i + 1])
             {
                 count++;
@@ -27,7 +28,7 @@ public:
                 count = 1;
             }
 
-            // If count reaches the limit (n/2), return the current element as majority element.
+            //* If count reaches the limit (n/2), return the current element as majority element.
             if (count > limit)
             {
                 return nums[i];
