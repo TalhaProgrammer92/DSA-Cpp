@@ -30,6 +30,7 @@ public:
                 count--;
         }
 
+        //* Check if majority element is present more than n/2 times in the array.
         count = 0;
         //* Iterate through each element in the array.
         for (int i = 0; i < nums.size(); i++)
@@ -39,10 +40,8 @@ public:
                 count++;
         }
 
-        //* If count is greater than n/2, return the majority element.
-        if (count > nums.size() / 2)
-            return majorityElement;
-        return -1; //* Majority element not found in the array.
+        //* If count is greater than n/2, return the majority element otherwise return -1.
+        return (count > nums.size() / 2) ? majorityElement : -1;
     }
 };
 
