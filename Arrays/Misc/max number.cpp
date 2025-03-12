@@ -18,5 +18,5 @@ int main()
     }
 
     //* Display Result
-    cout << "Maximum number is " << max << endl;
+    cout << "Max: " << max << endl;
 }
