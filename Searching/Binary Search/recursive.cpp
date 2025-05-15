@@ -4,20 +4,24 @@ using namespace std;
 
 int binary_search(int array[], int target, int start, int end)
 {
-    //* Initialize mid index
-    int mid = start + (end - start) / 2;
+    //* Check start and end for iteration
+    if (start <= end)
+    {
+        //* Initialize mid index
+        int mid = start + (end - start) / 2;
 
-    //* If the number at mid index is less than target
-    if (array[mid] < target)
-        return binary_search(array, target, mid + 1, end);
+        //* If the number at mid index is less than target
+        if (array[mid] < target)
+            return binary_search(array, target, mid + 1, end);
 
-    //* If the number at mid index is greater than target
-    else if (array[mid] > target)
-        return binary_search(array, target, start, mid - 1);
+        //* If the number at mid index is greater than target
+        else if (array[mid] > target)
+            return binary_search(array, target, start, mid - 1);
 
-    //* If the number at mid index is equal to target
-    else if (array[mid] == target)
-        return mid;
+        //* If the number at mid index is equal to target
+        else if (array[mid] == target)
+            return mid;
+    }
 
     return -1;
 }
