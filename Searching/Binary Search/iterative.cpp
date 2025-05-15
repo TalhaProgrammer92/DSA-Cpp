@@ -14,7 +14,8 @@ int binary_search(int array[], int size, int &target)
         while (start <= end)
         {
             //* Initialize mid index
-            int mid = (start + end) / 2;
+            // int mid = (start + end) / 2;         //! Might cause integer value overflow exception
+            int mid = start + (end - start) / 2;    //! Prevent integer value overflow exception
 
             //* If the number at mid index is less than target
             if (array[mid] < target)
