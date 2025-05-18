@@ -8,6 +8,7 @@ int main() {
 	system("cls");
 
 	string s = "racecar";
+	// string s = "A man, a plan, a canal: Panama";		//! Does not work due to non alphanum characters
 	int c = s[0];
 
 	for (int i = 1; i < s.length(); i++)
