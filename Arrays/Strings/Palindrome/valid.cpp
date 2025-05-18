@@ -11,25 +11,31 @@ bool is_palindrome_two_pointer(string s)
 
 	while (start <= end)
 	{
-		char a, b;
+		// char a, b;
 
-		do
+		// do
+		// {
+		if (!isalnum(s[start]))
 		{
-			if (!isalnum(s[start]))
-				start++;
+			start++;
+			continue;
+		}
 
-			a = tolower(s[start]);
-		} while (!isalnum(a));
+		// a = tolower(s[start]);
+		// } while (!isalnum(a));
 
-		do
+		// do
+		// {
+		if (!isalnum(s[end]))
 		{
-			if (!isalnum(s[end]))
-				end--;
+			end--;
+			continue;
+		}
 
-			b = tolower(s[end]);
-		} while (!isalnum(b));
+		// b = tolower(s[end]);
+		// } while (!isalnum(b));
 
-		if (a != b)
+		if (tolower(s[start]) != tolower(s[end]))
 			return false;
 
 		start++;
