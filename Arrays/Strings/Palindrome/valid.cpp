@@ -4,6 +4,9 @@ using namespace std;
 
 bool is_palindrome_two_pointer(string s)
 {
+	if (s.length() == 0)
+		return false;
+
 	int start = 0, end = s.length() - 1;
 
 	while (start <= end)
