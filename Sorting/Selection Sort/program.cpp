@@ -8,7 +8,18 @@ class Solution
 public:
 	static void sort(vector<int> &array)
 	{
-		
+		for (int i = 0; i < array.size() - 1; i++)
+		{
+			int small = i;
+
+			for (int j = i + 1; j < array.size(); j++)
+			{
+				if (array.at(j) < array.at(small))
+					small = j;
+			}
+
+			swap(array.at(i), array.at(small));
+		}
 	}
 
 	static void display(vector<int> &array)
