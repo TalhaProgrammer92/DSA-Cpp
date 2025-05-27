@@ -10,7 +10,7 @@ int main()
 	int m = 3, n = 3;
 
 	// * Algorithm
-	int index = m + n - 1, i = 2, j = 2;
+	int index = m + n - 1, i = m - 1, j = n - 1;
 	while (j >= 0)
 		a[index--] = (b[i] > a[i]) ? b[j--] : a[i--];
 
