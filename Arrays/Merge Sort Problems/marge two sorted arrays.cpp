@@ -12,22 +12,11 @@ int main()
 	// * Algorithm
 	int index = m + n - 1, i = 2, j = 2;
 	while (j >= 0)
-	{
-		if (a[i] < b[j])
-		{
-			a[index--] = b[j--];
-		}
-		else
-		{
-			a[index--] = a[i--];
-		}
-	}
+		a[index--] = (b[i] > a[i]) ? b[j--] : a[i--];
 
 	// * Print the array
 	for (int i = 0; i < m + n; i++)
-	{
 		cout << a[i] << ' ';
-	}
 	cout << endl;
 
 	return 0;
