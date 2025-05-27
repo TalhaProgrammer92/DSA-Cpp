@@ -10,7 +10,25 @@ int main()
 	int m = 3, n = 3;
 
 	// * Algorithm
-	
+	int index = m + n - 1, i = 2, j = 2;
+	while (j >= 0)
+	{
+		if (a[i] < b[j])
+		{
+			a[index--] = b[j--];
+		}
+		else
+		{
+			a[index--] = a[i--];
+		}
+	}
+
+	// * Print the array
+	for (int i = 0; i < m + n; i++)
+	{
+		cout << a[i] << ' ';
+	}
+	cout << endl;
 
 	return 0;
 }
