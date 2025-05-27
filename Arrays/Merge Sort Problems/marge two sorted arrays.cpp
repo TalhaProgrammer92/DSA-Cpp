@@ -11,7 +11,7 @@ int main()
 
 	// * Algorithm
 	int index = m + n - 1, i = m - 1, j = n - 1;
-	while (j >= 0)
+	while (i >= 0 && j >= 0)
 		a[index--] = (b[i] > a[i]) ? b[j--] : a[i--];
 
 	// * Print the array
