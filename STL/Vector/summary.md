@@ -7,6 +7,8 @@ Think of it as an **array with superpowers**:
 * You can add, remove, access, or modify elements easily.
 * It manages memory and resizing behind the scenes.
 
+![Vector Diagram](vector-diagram.png)
+
 Let’s break it down with **fresh examples**!
 
 ---
