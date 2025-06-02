@@ -6,6 +6,8 @@ It is a **sequence container** like `vector`, but with an important feature:
 
 ✅ You can insert **and** delete elements from **both ends** — front and back.
 
+![Deque diagram](deque-diagram)
+
 ---
 
 ## 📦 **Characteristics of `deque`**
