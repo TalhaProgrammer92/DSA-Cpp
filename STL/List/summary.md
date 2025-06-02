@@ -7,6 +7,8 @@
   * **Fast insertion** and **deletion** **anywhere** (front, back, middle).
   * **Bidirectional traversal** (forward & backward).
 
+![List Diagram](list-diagram.png)
+
 ---
 
 ## 🔗 How is it different from `vector`?
