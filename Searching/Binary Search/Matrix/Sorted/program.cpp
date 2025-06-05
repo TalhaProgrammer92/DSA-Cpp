@@ -3,13 +3,26 @@
 
 using namespace std;
 
+struct Position
+{
+	int row = 0, column = 0;
+};
+
+const int get_value(Position &pos, vector<vector<int>> &matrix)
+{
+	return matrix[pos.row][pos.column];
+}
+
 bool exists(vector<vector<int>> &matrix, int &target)
 {
 	// ? If the matrix is empty
 	if (matrix.size() == 0)
 		return false;
 
-	// ? Search for the given target
+	// ! Positions for start and end cell of the matrix
+	Position start, end;
+	end.row = matrix.size() - 1;
+	end.column = matrix[0].size() - 1;
 
 	return false;
 }
@@ -18,7 +31,7 @@ int main() {
 	// ! Array
 	/*
 		? Find given target from the given array
-		* Each row is sorted in ascending order
+		* Each row and column are sorted in ascending order
 	*/
 	vector<vector<int>> matrix = {
 		{1, 4, 7, 11, 15},
