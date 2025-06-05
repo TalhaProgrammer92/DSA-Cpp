@@ -27,7 +27,7 @@ bool exists_binary_search(vector<vector<int>> &matrix, int &target)
 
 	// ? Tri-indices for matrix
 	int start = 0, end = matrix.size() - 1, mid, r_end = matrix[0].size() - 1;
-	
+
 	while (start <= end)
 	{
 		// ? Center index of matrix
@@ -51,11 +51,11 @@ bool exists_binary_search(vector<vector<int>> &matrix, int &target)
 				// ? If the target on right side
 				if (number > target)
 					right = center - 1;
-				
+
 				// ? If the target on left side
 				else if (number < target)
 					left = center + 1;
-				
+
 				// ? If target found
 				else if (number == target)
 					return true;
@@ -65,7 +65,7 @@ bool exists_binary_search(vector<vector<int>> &matrix, int &target)
 		// ? If last number of current (center) row is less than target -> Move to next row
 		else if (matrix[mid][r_end] < target)
 			start = mid + 1;
-		
+
 		// ? If first number of current (center) row is greater than target -> Move to previous row
 		else if (matrix[mid][0] > target)
 			end = mid - 1;
@@ -75,7 +75,8 @@ bool exists_binary_search(vector<vector<int>> &matrix, int &target)
 	return false;
 }
 
-int main() {
+int main()
+{
 	// ! Array
 	/*
 		? Find given target from the given array
@@ -86,7 +87,8 @@ int main() {
 		{1, 3, 5, 7},
 		{10, 11, 16, 20},
 		{23, 30, 34, 60},
-	}; int target = 34;
+	};
+	int target = 34;
 
 	cout << "Status: " << exists_brute_froce(matrix, target) << endl;
 	cout << "Status: " << exists_binary_search(matrix, target) << endl;
