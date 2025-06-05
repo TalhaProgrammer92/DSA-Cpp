@@ -100,9 +100,4 @@ cout << exists_binary_search(matrix, 17); // prints 1 (true)
 | Search in Row | `left = 0`, `right = 3`           | Binary search in row\[1]          |
 | Narrow Down   | `center = 1`, value = 13          | 13 < 17 → go right                |
 | Found Target  | `center = 2`, value = 17          | ✅ Match                           |
-
 ---
-
-## 🎨 Diagram
-
-![Binary Search Working Diagram]()
