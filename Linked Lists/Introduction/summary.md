@@ -1,4 +1,4 @@
-## 🔹 Introduction to Linked Lists
+# 🔹 Introduction to Linked Lists
 
 A **linked list** is a **linear data structure** where each element (called a **node**) contains two parts:
 
@@ -16,9 +16,9 @@ Types of linked lists:
 * **Doubly Linked List** – Each node points to both the next and previous node.
 * **Circular Linked List** – Last node points to the head instead of `NULL`.
 
-Your code implements a **Singly Linked List**.
-
 ---
+
+# Singly Linked List
 
 ## 🔹 `Node` Class
 
