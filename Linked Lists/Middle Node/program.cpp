@@ -75,7 +75,7 @@ public:
     }
 
     // * Method - Middle node of the list
-    Node *middle()
+    Node *middle_brute_force()
     {
         if (head != NULL)
         {
@@ -86,6 +86,31 @@ public:
             // ? Return the middle node
             return at(mid);
         }
+
+        return NULL;
+    }
+
+    Node *middle_slow_fast()
+    {
+        if (head != NULL)
+        {
+            // ? Get two pointers
+            Node *slow = head, *fast = head;
+
+            // ? Treverse the list
+            while (fast != NULL)
+            {
+                if (fast->next == NULL)
+                    break;
+                
+                slow = slow->next;
+                fast = fast->next->next;
+            }
+
+            return slow;
+        }
+
+        return NULL;
     }
 
     // * Method - Print the list
@@ -121,5 +146,6 @@ int main()
     cout << "List: "; list.print();
 
     // * Find middle
-    cout << "Middle Node: " << list.middle()->value << endl;
+    cout << "Middle Node: " << list.middle_brute_force()->value << endl;
+    cout << "Middle Node: " << list.middle_slow_fast()->value << endl;
 }
