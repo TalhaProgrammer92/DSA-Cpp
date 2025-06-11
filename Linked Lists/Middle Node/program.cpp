@@ -98,11 +98,8 @@ public:
             Node *slow = head, *fast = head;
 
             // ? Treverse the list
-            while (fast != NULL)
+            while (fast != NULL && fast->next != NULL)
             {
-                if (fast->next == NULL)
-                    break;
-                
                 slow = slow->next;
                 fast = fast->next->next;
             }
