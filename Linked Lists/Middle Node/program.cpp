@@ -118,8 +118,8 @@ int main()
     list.push_front(1);
 
     // * Print
-    list.print();
+    cout << "List: "; list.print();
 
     // * Find middle
-    cout << "Middle Node value: " << list.middle()->value << endl;
+    cout << "Middle Node: " << list.middle()->value << endl;
 }
