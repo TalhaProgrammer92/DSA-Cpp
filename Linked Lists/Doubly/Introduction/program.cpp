@@ -70,12 +70,18 @@ public:
             // ? Get address of head node
             Node *start = head;
 
-            // ? Move head pointer to next node
-            head = head->next;
+            if (head != tail)
+            {
+                // ? Move head pointer to next node
+                head = head->next;
 
-            // ? Disconnect the front (first) node
-            start->next = NULL;
-            head->previous = NULL;
+                // ? Disconnect the front (first) node
+                start->next = NULL;
+                head->previous = NULL;
+            }
+            else
+                // ? Make both null if there is only single node int his list
+                head = tail = NULL;
 
             // ? Delete the front (first) node
             delete start;
@@ -87,24 +93,33 @@ public:
     {
         if (head != NULL)
         {
-            // ? Get head of the list
-            Node *node;
+            if (head != tail)
+            {
+                // ? Get head of the list
+                Node *node;
 
-            // ? 2nd last node of the list
-            node = tail->previous;
+                // ? 2nd last node of the list
+                node = tail->previous;
 
-            // ? Get address of tail node
-            Node *temp = tail;
+                // ? Get address of tail node
+                Node *temp = tail;
 
-            // ? Move tail pointer to 2nd last node
-            tail = tail->previous;
+                // ? Move tail pointer to 2nd last node
+                tail = tail->previous;
 
-            // ? Disconnect the back (last) node
-            node->next = NULL;
-            temp->previous = NULL;
+                // ? Disconnect the back (last) node
+                node->next = NULL;
+                temp->previous = NULL;
 
-            // ? Delete the back (last) node
-            delete temp;
+                // ? Delete the back (last) node
+                delete temp;
+            }
+            else
+            {
+                Node *temp = head;
+                head = tail = NULL;
+                delete temp;
+            }
         }
     }
 
