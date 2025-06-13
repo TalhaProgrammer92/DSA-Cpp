@@ -15,7 +15,7 @@ public:
 };
 
 // ? Linked list to create a list of connected nodes
-class LinkedList
+class DoublyList
 {
 private:
 	// * Main pointers
@@ -23,7 +23,7 @@ private:
 
 public:
 	// * Constructor
-	LinkedList() : head(NULL), tail(NULL) {}
+	DoublyList() : head(NULL), tail(NULL) {}
 
 	// * Method - Push a node at front
 	void push_front(int value)
@@ -156,7 +156,7 @@ public:
 int main()
 {
 	// * Linked list object
-	LinkedList list;
+	DoublyList list;
 
 	// * Pushing values at front
 	list.push_front(5);

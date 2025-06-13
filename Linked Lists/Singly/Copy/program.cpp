@@ -16,14 +16,14 @@ public:
 };
 
 // ? Linked list to create a list of connected nodes
-class LinkedList
+class DoublyList
 {
 public:
     // * Main pointers
     Node *head, *tail;
 
     // * Constructor
-    LinkedList() : head(NULL), tail(NULL) {}
+    DoublyList() : head(NULL), tail(NULL) {}
 
     // * Method - Push a node at front
     void push_front(int value)
@@ -165,7 +165,7 @@ Node *deep_copy(Node *head)
 int main()
 {
     // ? Create list
-    LinkedList list, copy;
+    DoublyList list, copy;
 
     // ? Add numbers
     list.push_back(7);
