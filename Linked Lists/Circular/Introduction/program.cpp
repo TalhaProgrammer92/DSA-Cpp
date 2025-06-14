@@ -51,7 +51,7 @@ public:
         // ? Create links
         if (head == NULL)
             head = tail = node;
-        
+
         else
         {
             tail->next = node;
@@ -61,31 +61,53 @@ public:
     }
 
     // * Method - Pop from head
-    void pop_from_head()
+    void delete_at_head()
     {
+        if (head == NULL)
+            return;
+
         // ? Establish temp node
         Node *temp = head;
 
         // ? Remove links
-        head = head->next;
-        tail->next = head;
+        if (head != tail)
+        {
+            head = head->next;
+            tail->next = head;
+        }
+        else
+        {
+            head = tail = NULL;
+        }
 
         // ? Remove from head
         delete temp;
     }
 
     // * Method - Pop from tail
-    void pop_from_tail()
+    void delete_at_tail()
     {
-        // ? Establish temp node
-        Node *node = head, *temp = tail;
+        if (head == NULL)
+            return;
 
-        while (node->next != tail)
-            node = node->next;
-        
-        // ? Remove links
-        tail = node;
-        tail->next = head;
+        // ? Establish temp node
+        Node *temp = tail;
+
+        if (head != tail)
+        {
+            // ? Find the 2nd last node
+            Node *node = head;
+            while (node->next != tail)
+                node = node->next;
+
+            // ? Remove links
+            tail = node;
+            tail->next = head;
+        }
+        else
+        {
+            head = tail = NULL;
+        }
 
         // ? Remove from tail
         delete temp;
@@ -95,8 +117,11 @@ public:
     void print()
     {
         if (head == NULL)
+        {
+            cout << "List is empty!" << endl;
             return;
-        
+        }
+
         Node *start = head;
 
         while (start != tail)
@@ -106,6 +131,13 @@ public:
         }
         cout << start->value << endl;
     }
+
+    // * Destructor
+    ~CircularLinkedList()
+    {
+        while (head != NULL)
+            delete_at_head();
+    }
 };
 
 int main()
@@ -114,17 +146,22 @@ int main()
     CircularLinkedList list;
 
     // ? Insert values
+    list.insert_at_head(5);
+    list.insert_at_head(4);
     list.insert_at_head(3);
     list.insert_at_head(2);
     list.insert_at_head(1);
+    list.insert_at_head(0);
 
-    list.insert_at_tail(4);
-    list.insert_at_tail(5);
     list.insert_at_tail(6);
+    list.insert_at_tail(7);
+    list.insert_at_tail(8);
+    list.insert_at_tail(9);
+    list.insert_at_tail(10);
 
     // ? Remove values
-    list.pop_from_head();
-    list.pop_from_tail();
+    list.delete_at_head();
+    list.delete_at_tail();
 
     // ? Print the list
     list.print();
