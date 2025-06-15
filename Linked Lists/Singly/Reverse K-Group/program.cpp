@@ -17,50 +17,30 @@ public:
 // ? Linked list to create a list of connected nodes
 class LinkedList
 {
-private:
+public:
     // * Main pointers
     Node *head, *tail;
 
-public:
     // * Constructor
     LinkedList() : head(NULL), tail(NULL) {}
 
-    // * Method - Push a node at front
-    void push_front(int value)
+    // * Method - Push a node at back
+    void push_back(int value)
     {
         // ? Create a new node
         Node *node = new Node(value);
 
         // ? If the list is empty
         if (head == NULL)
-            tail = node;
+            head = node;
 
         // ? If the list is not empty
         else
-            node->next = head;
+            tail->next = node;
 
         // ? Finalize
-        head = node;
+        tail = node;
     }
-
-	// * Method - Reverse the list
-	void reverse()
-	{
-		Node *prev = NULL, *current = head, *next = NULL;
-
-		while (current != NULL)
-		{
-			next = current->next;
-
-			current->next = prev;
-
-			prev = current;
-			current = next;
-		}
-
-		tail = head;
-		head = prev;
-	}
 
     // * Method - Print the list
     void print()
@@ -78,20 +58,42 @@ public:
     }
 };
 
+// * Function - Reverse in k-group
+Node *reverse(Node *head, int k)
+{
+    // ? Check k nodes' existence
+    Node *node = head;
+    int count = 1;
+    while (count < k)
+    {
+        if (node == NULL)
+            return head;
+
+        count++;
+        node = node->next;
+    }
+
+    // ? Reverse recursively
+}
+
 int main()
 {
-    // * Linked list object
+    // ? Create list
     LinkedList list;
 
-    // * Pushing values at front
-    list.push_front(5);
-    list.push_front(4);
-    list.push_front(3);
-    list.push_front(2);
-	list.push_front(1);
+    // ? Add nodes
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.push_back(4);
+    list.push_back(5);
 
-	// * Reverse
-	cout << "Before:\t"; list.print();
-    list.reverse();
-	cout << "After:\t"; list.print();
+    // ? Print the list
+    cout << "List: ";
+    list.print();
+
+    // ? Reverse
+    // list.head = reverse(list.head, 2);
+    // cout << "Reversed: ";
+    // list.print();
 }

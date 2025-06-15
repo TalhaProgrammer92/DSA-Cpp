@@ -15,14 +15,14 @@ public:
 };
 
 // ? Double linked list
-class DoublyList
+class LinkedList
 {
     // * Attributes
     Node *head, *tail;
 
 public:
     // * Constructor
-    DoublyList() : head(NULL), tail(NULL) {}
+    LinkedList() : head(NULL), tail(NULL) {}
 
     // * Method - Add a node at front
     void push_front(int value)
@@ -142,7 +142,7 @@ public:
 int main()
 {
     // ? Create Doubly Linked List Object
-    DoublyList list;
+    LinkedList list;
 
     // ? Add some data
     list.push_front(3);

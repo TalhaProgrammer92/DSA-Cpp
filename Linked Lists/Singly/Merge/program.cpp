@@ -15,14 +15,14 @@ public:
 };
 
 // ? Linked list to create a list of connected nodes
-class DoublyList
+class LinkedList
 {
 public:
     // * Main pointers
     Node *head, *tail;
 
     // * Constructor
-    DoublyList() : head(NULL), tail(NULL) {}
+    LinkedList() : head(NULL), tail(NULL) {}
 
     // * Method - Push a node at back
     void push_back(int value)
@@ -84,7 +84,7 @@ Node *merge(Node *head1, Node *head2)
 int main()
 {
     // * Create two sorted lists
-    DoublyList list1, list2;
+    LinkedList list1, list2;
 
     // * Adding elements
     list1.push_back(1);

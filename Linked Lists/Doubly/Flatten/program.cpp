@@ -15,14 +15,14 @@ public:
 };
 
 // ? Doubly Linked List
-class DoublyList
+class LinkedList
 {
 public:
     // * Attributes
     Node *head, *tail;
 
     // * Constructor
-    DoublyList() : head(NULL), tail(NULL) {}
+    LinkedList() : head(NULL), tail(NULL) {}
 
     // * Method - Add a node at back
     void push_back(int value)
@@ -136,7 +136,7 @@ Node *flatten_list(Node *head)
 int main()
 {
     // ? Create lists for multi-level doubly list
-    DoublyList list1, list2, list3, flatten;
+    LinkedList list1, list2, list3, flatten;
 
     // ? Inserting data
     list1.push_back(1);
