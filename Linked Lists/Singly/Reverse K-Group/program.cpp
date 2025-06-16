@@ -63,7 +63,8 @@ Node *reverse(Node *head, int k)
 {
     // ? Check k nodes' existence
     Node *node = head;
-    int count = 1;
+    int count = 0;
+
     while (count < k)
     {
         if (node == NULL)
@@ -73,7 +74,29 @@ Node *reverse(Node *head, int k)
         node = node->next;
     }
 
-    // ? Reverse recursively
+    // ? Reverse the rest of the list
+    Node *previous = reverse(node, k);
+
+    // ? Reverse current k nodes of the list
+    node = head; count = 0;
+    while (count < k)
+    {
+        // ? Link current node with previous node
+        Node *next = node->next;
+
+        node->next = previous;
+
+        // ? Update links
+        previous = node;
+
+        node = next;
+
+        // ? Update count - Loop Control
+        count++;
+    }
+
+    // ? Return new head
+    return previous;
 }
 
 int main()
@@ -89,11 +112,11 @@ int main()
     list.push_back(5);
 
     // ? Print the list
-    cout << "List: ";
+    cout << "List: "; /* 1->2->3->4->5->NULL */
     list.print();
 
     // ? Reverse
-    // list.head = reverse(list.head, 2);
-    // cout << "Reversed: ";
-    // list.print();
+    list.head = reverse(list.head, 2);
+    cout << "Reversed: "; /* 2->1->4->3->5->NULL */
+    list.print();
 }
