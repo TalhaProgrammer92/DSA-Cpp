@@ -8,30 +8,24 @@ template <class Type>
 class StackVector
 {
 	vector<Type> data;
-	int top_index;
 
 public:
-	// * Constructor
-	StackVector() : top_index(-1) {}
-
 	// * Method - Push a value
 	void push(Type value)
 	{
 		data.push_back(value);
-		top_index++;
 	}
 
 	// * Method - Pop a value
 	void pop()
 	{
 		data.pop_back();
-		top_index--;
 	}
 
 	// * Method - Top value
 	Type top()
 	{
-		return data[top_index];
+		return data[data.size() - 1];
 	}
 };
 
