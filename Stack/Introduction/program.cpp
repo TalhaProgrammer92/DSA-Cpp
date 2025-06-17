@@ -4,14 +4,13 @@
 using namespace std;
 
 // ? Stack - Vector Based
-template <class Type>
 class StackVector
 {
-	vector<Type> data;
+	vector<int> data;
 
 public:
 	// * Method - Push a value
-	void push(Type value)
+	void push(int value)
 	{
 		data.push_back(value);
 	}
@@ -23,7 +22,7 @@ public:
 	}
 
 	// * Method - Top value
-	Type top()
+	int top()
 	{
 		return data[data.size() - 1];
 	}
@@ -36,32 +35,30 @@ public:
 };
 
 // ? Node class for stack based linked list
-template <class Type>
 class Node
 {
 public:
 	// * Attributes
-	Type data;
-	Node<Type> *next;
+	int data;
+	Node *next;
 
 	// * Constructor
-	Node(Type data) : data(data), next(NULL) {}
+	Node(int data) : data(data), next(NULL) {}
 };
 
-template <class Type>
 class StackLinkedList
 {
 	// * Attributes
-	Node<Type> *head;
+	Node *head;
 
 public:
 	// * Constructor
 	StackLinkedList() : head(NULL) {}
 
 	// * Method - Push data into the stack
-	void push(Type data)
+	void push(int data)
 	{
-		Node<Type> *node = new Node(data);
+		Node *node = new Node(data);
 
 		if (head != NULL)
 			node->next = head;
@@ -72,7 +69,7 @@ public:
 	// * Method - Pop data from the stack
 	void pop()
 	{
-		Node<Type> *temp = head;
+		Node *temp = head;
 
 		head = head->next;
 
@@ -82,7 +79,7 @@ public:
 	}
 
 	// * Method - Get data of top
-	Type top()
+	int top()
 	{
 		return head->data;
 	}
@@ -97,31 +94,36 @@ public:
 int main()
 {
 	// ? Stack - Vector Based
-	StackVector<int> stack_vector;
+	StackVector stack_vector;
 
 	// * Pushing data
 	stack_vector.push(1);
 	stack_vector.push(2);
 	stack_vector.push(3);
 
-	// * Popping data
-	stack_vector.pop();		// ! 3 Removed
-	stack_vector.pop();		// ! 2 Removed
-
 	// * Print top value
-	cout << stack_vector.top() << endl;
+	cout << "Stack (Vector): ";
+	while (!stack_vector.empty())
+	{
+		cout << stack_vector.top() << ' ';
+		stack_vector.pop();
+	}
+	cout << endl;
 
 	// ? Stack - Linked List Based
-	StackLinkedList<int> stack_list;
+	StackLinkedList stack_list;
 
 	// * Pushing data
 	stack_list.push(1);
 	stack_list.push(2);
 	stack_list.push(3);
 
-	// * Popping data
-	stack_list.pop();		// ! 3 Removed
-
 	// * Print the data
-	cout << stack_list.top() << endl;
+	cout << "Stack (Linked List): ";
+	while (!stack_list.empty())
+	{
+		cout << stack_list.top() << ' ';
+		stack_list.pop();
+	}
+	cout << endl;
 }
