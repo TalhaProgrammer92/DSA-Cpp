@@ -55,7 +55,7 @@ bool is_valid_parenthesis(string paren)
 
 int main()
 {
-	string parenthesis[] = {"({})", "({}]", "({}", "({[]}[])", "]"};
+	string parenthesis[] = {"({})", "({}]", "({}", "({[]}[])", "()]"};
 
 	for (string paren : parenthesis)
 		cout << paren << " : " << is_valid_parenthesis(paren) << endl;
