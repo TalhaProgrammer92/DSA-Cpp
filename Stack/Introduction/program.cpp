@@ -27,6 +27,12 @@ public:
 	{
 		return data[data.size() - 1];
 	}
+
+	// * Method - Check if stack is empty
+	bool empty()
+	{
+		return data.size() == 0;
+	}
 };
 
 // ? Node class for stack based linked list
@@ -46,25 +52,21 @@ template <class Type>
 class StackLinkedList
 {
 	// * Attributes
-	Node<Type> *head, *tail;
+	Node<Type> *head;
 
 public:
 	// * Constructor
-	StackLinkedList() : head(NULL), tail(NULL) {}
+	StackLinkedList() : head(NULL) {}
 
 	// * Method - Push data into the stack
 	void push(Type data)
 	{
 		Node<Type> *node = new Node(data);
 
-		if (head == NULL)
-			head = tail = node;
-		else
-		{
+		if (head != NULL)
 			node->next = head;
 
-			head = node;
-		}
+		head = node;
 	}
 
 	// * Method - Pop data from the stack
@@ -83,6 +85,12 @@ public:
 	Type top()
 	{
 		return head->data;
+	}
+
+	// * Method - Check if stack is empty
+	bool empty()
+	{
+		return head == NULL;
 	}
 };
 
