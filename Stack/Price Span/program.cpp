@@ -8,18 +8,17 @@ using namespace std;
 vector<int> span_brute_force(vector<int> &prices)
 {
     // ? Sotre some data
-    vector<int> temp, span;
+    vector<int> span;
 
     // ? Treverse through all stock prices
-    for (int price : prices)
+    for (int i = 0; i < prices.size(); i++)
     {
         int days = 1;
 
         // ? Check current price with previous prices
-        for (int i = temp.size() - 1; i >= 0; i--)
+        for (int j = i - 1; j >= 0; j--)
         {
-            // ? If found a price <= current price
-            if (temp[i] <= price)
+            if (prices[j] <= prices[i])
                 days++;
             else
                 break;
@@ -27,7 +26,6 @@ vector<int> span_brute_force(vector<int> &prices)
 
         // ? Store calculated data
         span.push_back(days);
-        temp.push_back(price);
     }
 
     return span;
