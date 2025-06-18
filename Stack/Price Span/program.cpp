@@ -47,22 +47,13 @@ vector<int> span_optimal(vector<int> &prices)
 
         else
         {
-            // ? Get index of the previous high value (price) than current value (price)
-            int index;
-
-            while (!index_stack.empty())
-            {
-                index = index_stack.top();
-
-                if (prices[index] > prices[i])
-                    break;
-
-                // ? Remove lower / equal prices to current price from stack
+            // ? Remove all small values from the stack till a greater found
+            while (!index_stack.empty() && prices[index_stack.top()] <= prices[i])
                 index_stack.pop();
-            }
 
             // ? Calculate and push the span
-            span.push_back(i - index);
+            int s = (!index_stack.empty()) ? i - index_stack.top() : 1;
+            span.push_back(s);
         }
 
         index_stack.push(i);
