@@ -36,26 +36,22 @@ vector<int> span_brute_force(vector<int> &prices)
 // * Function - Find spans by using an optimal method
 vector<int> span_optimal(vector<int> &prices)
 {
-    vector<int> span; stack<int> index_stack;
+    vector<int> span;
+    stack<int> index_stack;
 
     // ? Traverse the given array of prices
     for (int i = 0; i < prices.size(); i++)
     {
-        // ? If the stack is empty
-        if (index_stack.empty())
-            span.push_back(1);
 
-        else
-        {
-            // ? Remove all small values from the stack till a greater found
-            while (!index_stack.empty() && prices[index_stack.top()] <= prices[i])
-                index_stack.pop();
+        // ? Remove all small values from the stack till a greater found
+        while (!index_stack.empty() && prices[index_stack.top()] <= prices[i])
+            index_stack.pop();
 
-            // ? Calculate and push the span
-            int s = (!index_stack.empty()) ? i - index_stack.top() : 1;
-            span.push_back(s);
-        }
+        // ? Calculate and push the span
+        int s = (!index_stack.empty()) ? i - index_stack.top() : 1;
+        span.push_back(s);
 
+        // ? Push the current index onto the stack
         index_stack.push(i);
     }
 
