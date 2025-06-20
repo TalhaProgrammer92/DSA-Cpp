@@ -7,23 +7,6 @@
 ## **📖 About This Repository**  
 This repository contains **Data Structures and Algorithms (DSA) implementations in C++**. It serves as a collection of fundamental concepts, problem-solving techniques, and optimized code for **competitive programming, technical interviews, and academic learning**.  
 
-## **📂 Repository Structure**  
-```
-📦 DSA-Cpp
- ┣ 📂 STL
- ┣ 📂 Arrays
- ┣ 📂 Linked Lists
- ┣ 📂 Stacks
- ┣ 📂 Queues
- ┣ 📂 Trees
- ┣ 📂 Graphs
- ┣ 📂 Sorting
- ┣ 📂 Searching
- ┣ 📂 Dynamic Programming
- ┣ 📂 Topics Summary
- ┣ 📜 README.md
-```
-
 ## **💡 Topics Covered**  
 ✔ **Data Structures:** Arrays, Linked Lists, Stacks, Queues, Trees, Graphs, Hash Tables  
 ✔ **Algorithms:** Sorting (Quick Sort, Merge Sort, etc.), Searching (Binary Search, Linear Search)  
