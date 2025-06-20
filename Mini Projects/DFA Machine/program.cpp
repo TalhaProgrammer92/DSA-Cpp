@@ -97,13 +97,20 @@ public:
     // * Get a state
     State *get_state(string name)
     {
-        for (auto state : states)
+        for (int i = 0; i < states.size(); i++)
         {
-            if (state.get_name() == name)
-                return &state;
+            State *state = &states[i];
+            if (state->get_name() == name)
+                return state;
         }
 
         return NULL;
+    }
+
+    // * Create transition
+    void create_transition(string state1, string state2, char symbol)
+    {
+        get_state(state1)->create_transition(get_state(state2), symbol);
     }
 
     // * Simulate the machine - check the pattern
@@ -121,7 +128,7 @@ public:
                 // ! Incorrect pattern - Case undefined symbol
                 if (!state->is_valid_symbol(symbol))
                 {
-                    cout << "Undefined Symbol! " << symbol;
+                    cout << "Undefined Symbol! " << symbol << endl;
                     return false;
                 }
 
@@ -140,8 +147,21 @@ public:
 int main()
 {
     // ? Create a machine
-    Machine tria("ab");   // * A machine that accepts alphabet {a, b} and always end at triple 'a'
+    Machine m1("ab");   // * A machine that accepts alphabet {a, b} and always end at 'a'
 
     // ? Add states
-    tria.add_state("q0");
+    m1.add_state("q0");
+    m1.add_state("q1", true);
+
+    // ? Create transitions
+    m1.create_transition("q0", "q1", 'a');
+    m1.create_transition("q0", "q0", 'b');
+
+    m1.create_transition("q1", "q1", 'a');
+    m1.create_transition("q1", "q0", 'b');
+
+    // ? Simulate
+    cout << "Simulate: " << m1.simulate("babbaa") << endl;
+    cout << "Simulate: " << m1.simulate("babbaab") << endl;
+    m1.simulate("abca");
 }
