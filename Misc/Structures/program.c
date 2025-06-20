@@ -19,7 +19,7 @@ int main()
 	s2.marks = 41;
 	s2.grade = 'B';
 
-	struct Student *s = (struct Student *) malloc(sizeof(struct Student));
+	struct Student *s = (struct Student *) malloc(sizeof(struct Student));	// ! In C++, Student s = new Student();
 
 	s->roll = 34;
 	s->marks = 75;
