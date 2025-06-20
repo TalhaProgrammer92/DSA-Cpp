@@ -146,22 +146,57 @@ public:
 
 int main()
 {
-    // ? Create a machine
-    Machine m1("ab");   // * A machine that accepts alphabet {a, b} and always end at 'a'
+    // // ? Create a machine
+    // Machine m1("ab");   // * A machine that accepts alphabet {a, b} and always end at 'a'
 
-    // ? Add states
-    m1.add_state("q0");
-    m1.add_state("q1", true);
+    // // ? Add states
+    // m1.add_state("q0");
+    // m1.add_state("q1", true);
 
-    // ? Create transitions
-    m1.create_transition("q0", "q1", 'a');
-    m1.create_transition("q0", "q0", 'b');
+    // // ? Create transitions
+    // m1.create_transition("q0", "q1", 'a');
+    // m1.create_transition("q0", "q0", 'b');
 
-    m1.create_transition("q1", "q1", 'a');
-    m1.create_transition("q1", "q0", 'b');
+    // m1.create_transition("q1", "q1", 'a');
+    // m1.create_transition("q1", "q0", 'b');
 
-    // ? Simulate
-    cout << "Simulate: " << m1.simulate("babbaa") << endl;
-    cout << "Simulate: " << m1.simulate("babbaab") << endl;
-    m1.simulate("abca");
+    // // ? Simulate
+    // cout << "Simulate: " << m1.simulate("babbaa") << endl;
+    // cout << "Simulate: " << m1.simulate("babbaab") << endl;
+    // m1.simulate("abca");
+
+    // ? another DFA - {0, 1} where |w| = 3(mod 7)
+    Machine m2("10");
+
+    m2.add_state("q0");
+    m2.add_state("q1");
+    m2.add_state("q2");
+    m2.add_state("q3", true);   // ! Final state
+    m2.add_state("q4");
+    m2.add_state("q5");
+    m2.add_state("q6");
+
+    m2.create_transition("q0", "q0", '0');
+    m2.create_transition("q0", "q1", '1');
+    
+    m2.create_transition("q1", "q2", '0');
+    m2.create_transition("q1", "q3", '1');
+    
+    m2.create_transition("q2", "q4", '0');
+    m2.create_transition("q2", "q5", '1');
+    
+    m2.create_transition("q3", "q6", '0');
+    m2.create_transition("q3", "q0", '1');
+    
+    m2.create_transition("q4", "q1", '0');
+    m2.create_transition("q4", "q2", '1');
+    
+    m2.create_transition("q5", "q3", '0');
+    m2.create_transition("q5", "q4", '1');
+    
+    m2.create_transition("q6", "q5", '0');
+    m2.create_transition("q6", "q6", '1');
+
+    cout << "Simulate: " << m2.simulate("11000") << endl;
+    cout << "Simulate: " << m2.simulate("11001") << endl;
 }
