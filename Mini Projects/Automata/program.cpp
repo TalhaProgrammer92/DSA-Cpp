@@ -8,9 +8,11 @@ using namespace std;
 class State
 {
     // * Attributes
-    string name;
-    bool is_final;
     unordered_map<char, State *> transition_map;
+    bool is_final;
+
+protected:
+    string name;
 
 public:
     // * Constructors
@@ -71,6 +73,8 @@ class Machine
 {
     // * Attributes
     vector<State> states;
+
+protected:
     string alphabet;
 
 public:
@@ -177,7 +181,8 @@ public:
                 state2 = "r" + to_string(id++);
 
                 // ! Reset id
-                if (id == target) id = 0;
+                if (id == target)
+                    id = 0;
 
                 // cout << state1 << ' ' << state2 << ' ' << symbol << endl;   // ! Debug
 
@@ -192,6 +197,36 @@ public:
     {
         return machine->simulate(pattern);
     }
+};
+
+// ? Special State
+class SpecialState : public State
+{
+    // * Attributes
+    char output;
+    unordered_map<char, SpecialState *> transition_map;
+
+public:
+    // * Constructor
+    SpecialState() {}
+
+    SpecialState(string name, string alphabet, char output) : State()
+    {
+        // ! Assigning values
+        this->name = name;
+        this->output = output;
+
+        // ! Make transitions null
+        for (char symbol : alphabet)
+            transition_map[symbol] = NULL;
+    }
+};
+
+// ? Moore Machine
+class MooreMachine : Machine
+{
+    // * Attributes
+    vector<SpecialState> states;
 };
 
 int main()
