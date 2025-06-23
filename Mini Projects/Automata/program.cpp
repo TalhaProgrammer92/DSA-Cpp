@@ -200,17 +200,17 @@ public:
 };
 
 // ? Special State
-class SpecialState : public State
+class MooreState : public State
 {
     // * Attributes
     char output;
-    unordered_map<char, SpecialState *> transition_map;
+    unordered_map<char, MooreState *> transition_map;
 
 public:
-    // * Constructor
-    SpecialState() {}
+    // * Constructors
+    MooreState() {}
 
-    SpecialState(string name, string alphabet, char output) : State()
+    MooreState(string name, string alphabet, char output) : State()
     {
         // ! Assigning values
         this->name = name;
@@ -220,13 +220,22 @@ public:
         for (char symbol : alphabet)
             transition_map[symbol] = NULL;
     }
+
+    // * Create transition
+    void create_transition(char symbol, MooreState *state)
+    {
+        if (this->is_valid_symbol(symbol))
+            transition_map[symbol] = state;
+    }
+
+    // * 
 };
 
 // ? Moore Machine
 class MooreMachine : Machine
 {
     // * Attributes
-    vector<SpecialState> states;
+    vector<MooreState> states;
 };
 
 int main()
