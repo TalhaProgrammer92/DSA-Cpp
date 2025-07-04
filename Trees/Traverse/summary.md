@@ -19,7 +19,20 @@ Each node:
 
 ### 🟩 `preorder(root)`: Root → Left → Right
 
-**Dry Run Trace** (what gets printed):
+**Source Code:**
+
+```cpp
+void preorder(TreeNode *root)
+{
+    if (root == nullptr)
+        return;
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+```
+
+**Dry Run Trace:**
 
 ```shell
 preorder(1)
@@ -53,7 +66,20 @@ Preorder: 1 2 4 5 3 6
 
 ### 🟨 `inorder(root)`: Left → Root → Right
 
-**Dry Run Trace**:
+**Source Code:**
+
+```cpp
+void inorder(TreeNode *root)
+{
+    if (root == nullptr)
+        return;
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+```
+
+**Dry Run Trace:**
 
 ```shell
 inorder(1)
@@ -87,7 +113,20 @@ Inorder: 4 2 5 1 6 3
 
 ### 🟦 `postorder(root)`: Left → Right → Root
 
-**Dry Run Trace**:
+**Source Code:**
+
+```cpp
+void postorder(TreeNode *root)
+{
+    if (root == nullptr)
+        return;
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data << " ";
+}
+```
+
+**Dry Run Trace:**
 
 ```shell
 postorder(1)
