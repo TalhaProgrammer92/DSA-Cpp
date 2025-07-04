@@ -21,7 +21,7 @@ Each node:
 
 **Dry Run Trace** (what gets printed):
 
-```
+```shell
 preorder(1)
 → print 1
 → preorder(2)
@@ -45,7 +45,7 @@ preorder(1)
 
 **Output:**
 
-```
+```c
 Preorder: 1 2 4 5 3 6
 ```
 
@@ -55,7 +55,7 @@ Preorder: 1 2 4 5 3 6
 
 **Dry Run Trace**:
 
-```
+```shell
 inorder(1)
 → inorder(2)
    → inorder(4)
@@ -79,7 +79,7 @@ inorder(1)
 
 **Output:**
 
-```
+```c
 Inorder: 4 2 5 1 6 3
 ```
 
@@ -89,7 +89,7 @@ Inorder: 4 2 5 1 6 3
 
 **Dry Run Trace**:
 
-```
+```shell
 postorder(1)
 → postorder(2)
    → postorder(4)
@@ -113,7 +113,7 @@ postorder(1)
 
 **Output:**
 
-```
+```c
 Postorder: 4 5 2 6 3 1
 ```
 
