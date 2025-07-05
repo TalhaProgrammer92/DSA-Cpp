@@ -64,7 +64,7 @@ Block::Block(int data) : data(data), next(NULL) {}
 // ? Queue - Methods
 
 // * Constructors
-Queue::Queue() : top(NULL) {}
+Queue::Queue() : top(NULL), bottom(NULL) {}
 
 // * Push data
 void Queue::push(int data)
