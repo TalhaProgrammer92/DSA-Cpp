@@ -51,6 +51,12 @@ public:
 		return data;
 	}
 
+	// * Top data
+	int top()
+	{
+		return top->data;
+	}
+
 	// * Getter - Size
 	int size()
 	{
