@@ -40,21 +40,25 @@ public:
 	// * Pop data
 	int pop()
 	{
-		int data = top->data;
-		
-		Block *temp = top;
+		if (top != NULL)
+		{
+			int data = top->data;
 
-		top = top->next;
+			Block *temp = top;
 
-		delete temp;
+			top = top->next;
 
-		return data;
+			delete temp;
+
+			return data;
+		}
 	}
 
 	// * Top data
 	int top()
 	{
-		return top->data;
+		if (top != NULL)
+			return top->data;
 	}
 
 	// * Getter - Size
@@ -82,7 +86,7 @@ int main()
 	// * Push data
 	for (int element : data)
 		stack.push(element);
-	
+
 	// * Pop & Display
 	while (stack.size() > 0)
 	{
