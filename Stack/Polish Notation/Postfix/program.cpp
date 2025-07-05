@@ -20,6 +20,10 @@ string infix_to_postfix(string &infix)
 		// * Operator
 		else
 		{
+			// ! Skip empty spaces
+			if (c == ' ' || c == '\t' || c == '\n')
+				continue;
+
 			if (c == ')')
 			{
 				while (!s.empty())
