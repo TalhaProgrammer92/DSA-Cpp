@@ -20,7 +20,7 @@ public:
 class Queue
 {
 	// * Attributes
-	Block *top;
+	Block *top, *bottom;
 
 public:
 	// * Constructor
@@ -71,20 +71,15 @@ void Queue::push(int data)
 {
 	Block *block = new Block(data);
 
+	// ! If queue is empty
 	if (top == NULL)
 		top = block;
+
+	// ! If queue is not empty
 	else
-	{
-		// ! Find last block and push that new block to next to the last block
-		Block *temp = top;
+		bottom->next = block;
 
-		while (temp->next != NULL)
-		{
-			temp = temp->next;
-		}
-
-		temp->next = block;
-	}
+	bottom = block;
 }
 
 // * Pop data
@@ -96,7 +91,7 @@ int Queue::pop()
 
 		Block *block = top;
 
-		top = top->next;
+		top = (top->next != NULL) ? top->next : NULL;
 
 		delete block;
 
