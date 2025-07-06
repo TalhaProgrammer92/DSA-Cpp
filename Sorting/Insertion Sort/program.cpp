@@ -3,22 +3,20 @@
 
 using namespace std;
 
-void sort(vector<int> &array)
+void sort(vector<int> &arr)
 {
-	for (int i = i; i < array.size(); i++)
-	{
-		// int key = array[i];
+	for (int i = 1; i < arr.size(); i++) {
+        int key = arr[i];        // * Current element to be inserted
+        int j = i - 1;
 
-		for (int j = 0; j < i; j++)
-		{
-			if (array[i] < array[j])
-			{
-				int temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-			}
-		}
-	}
+        // ! Move elements of arr[0..i-1], that are greater than key, to one position ahead of their current position
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+
+        arr[j + 1] = key;
+    }
 }
 
 void display(vector<int> &array)
@@ -34,18 +32,7 @@ int main()
 
 	display(array);
 
-	for (int i = i; i < array.size(); i++)
-	{
-		for (int j = 0; j < i; j++)
-		{
-			if (array[i] < array[j])
-			{
-				int temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-			}
-		}
-	}
+	sort(array);
 
 	display(array);
 
