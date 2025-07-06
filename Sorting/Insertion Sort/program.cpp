@@ -3,42 +3,51 @@
 
 using namespace std;
 
-class Solution
+void sort(vector<int> &array)
 {
-public:
-	static void sort(vector<int> &array)
+	for (int i = i; i < array.size(); i++)
 	{
-		for (int i = i; i < array.size(); i++)
-		{
-			int prev = i - 1;
-			int curr = array[i];
+		// int key = array[i];
 
-			while (array[prev] > curr && prev >= 0)
+		for (int j = 0; j < i; j++)
+		{
+			if (array[i] < array[j])
 			{
-				array[prev + 1] = array[prev];
-				prev--;
+				int temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
 			}
-			array[prev + 1] = curr;
 		}
 	}
+}
 
-	static void display(vector<int> &array)
-	{
-		for (auto &&i : array)
-			cout << i << ' ';
-		cout << endl;
-	}
-};
+void display(vector<int> &array)
+{
+	for (auto &&i : array)
+		cout << i << ' ';
+	cout << endl;
+}
 
 int main()
 {
 	vector<int> array = {4, 1, 5, 2, 3};
 
-	Solution::display(array);
+	display(array);
 
-	Solution::sort(array);
+	for (int i = i; i < array.size(); i++)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (array[i] < array[j])
+			{
+				int temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+			}
+		}
+	}
 
-	Solution::display(array);
+	display(array);
 
 	return 0;
 }
