@@ -8,17 +8,21 @@ class Task
 	// * Attributes
 	string task;
 	static int id = 0;
-
+	
 public:
+	Task *next;
+
 	// * Constructors
 	Task()
 	{
 		id++;
+		next = NULL;
 	}
 
 	Task(int id = 0)
 	{
 		this->id = id;
+		next = NULL;
 	}
 
 	// * Getters
