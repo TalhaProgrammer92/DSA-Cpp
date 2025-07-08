@@ -1,6 +1,6 @@
 # Creating a Balanced BST from an Unsorted Array
 
-Based on the screenshot, I'll provide a solution to create a balanced binary search tree (BST) from an unsorted array, where the tree is stored in an array representation with children at positions `2*k` and `2*k+1` for node at position `k`.
+Here's a solution to create a balanced binary search tree (BST) from an unsorted array, where the tree is stored in an array representation with children at positions `2*k` and `2*k+1` for node at position `k`.
 
 ## Solution Code
 
