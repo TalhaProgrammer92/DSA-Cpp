@@ -37,7 +37,7 @@ void makeBalancedBST(unsigned *begin, unsigned numElem) {
 }
 ```
 
-*OR*
+*OR (Lambda Function)*
 
 ```cpp
 void buildBST(const std::vector<unsigned>& arr, std::vector<unsigned>& bst, 
