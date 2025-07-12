@@ -133,7 +133,19 @@ public:
 	}
 };
 
+// ? Display TMC
+void display(vector<string> &tmc)
+{
+	for (string t : tmc)
+		cout << t << ' ';
+	cout << endl;
+}
+
 // ? Entry Point
 int main()
 {
+	Key key({'+', '-', '*', '/'});
+	string text = "Talha";
+	vector<string> tmc = TalhaMorseCode::encode(text, key);
+	display(tmc);
 }
