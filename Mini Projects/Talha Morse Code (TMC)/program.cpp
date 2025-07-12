@@ -146,8 +146,8 @@ void display(vector<string> &tmc)
 // ? Entry Point
 int main()
 {
-	Key key({'+', '-', '*', '/'});
-	string text = "Talha";
+	Key key({'+', '-', '*', '/', '<', '>', '(', ')', '[', ']'});
+	string text = "The quick brown fox jumps over a lazy dog";
 	vector<string> tmc = TalhaMorseCode::encode(text, key);
 	display(tmc);
 	cout << TalhaMorseCode::decode(tmc, key) << endl;
