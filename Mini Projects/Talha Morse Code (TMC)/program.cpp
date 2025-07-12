@@ -22,7 +22,7 @@ string ascii_to_ternary(int ascii)
 }
 
 // ? Ternary (Base 3) -> Decimal (ASCII)
-char ternary_to_ascii(string &ternary)
+char ternary_to_ascii(string ternary)
 {
 	// * To store ASCII
 	int ascii = 0, limit = ternary.length();
@@ -35,7 +35,7 @@ char ternary_to_ascii(string &ternary)
 }
 
 // ? Parse Ternary for TMC
-string parse_ternary(const string &ternary, unordered_map<char, char> &key)
+string parse_ternary(string ternary, unordered_map<char, char> key)
 {
 	string tmc = "";
 
@@ -46,13 +46,13 @@ string parse_ternary(const string &ternary, unordered_map<char, char> &key)
 }
 
 // ? Parse TMC for Ternary
-string parse_tmc(const string &tmc, unordered_map<char, char> &key)
+string parse_tmc(string tmc_string, unordered_map<char, char> key)
 {
-	return parse_ternary(tmc, key);
+	return parse_ternary(tmc_string, key);
 }
 
 // ? Encoder
-vector<string> encode(const string &text, unordered_map<char, char> &key)
+vector<string> encode(string text, unordered_map<char, char> key)
 {
 	vector<string> tmc;
 
@@ -62,16 +62,35 @@ vector<string> encode(const string &text, unordered_map<char, char> &key)
 	return tmc;
 }
 
+// ? Decoder
+string decode(vector<string> tmc, unordered_map<char, char> key)
+{
+	string text = "";
+
+	for (string s : tmc)
+		text += string(1, ternary_to_ascii(parse_tmc(s, key)));
+
+	return text;
+}
+
 int main()
 {
 	unordered_map<char, char> key;
 	key['0'] = '.';
 	key['1'] = '~';
 	key['2'] = '|';
+	
+	key['.'] = '0';
+	key['~'] = '1';
+	key['|'] = '2';
 
-	const string text = "My name is Talha Ahmad";
-	cout << "Text: " << text << "\nTMC: ";
-	for (string s : encode(text, key))
+	string text = "My name is Talha Ahmad";
+	// cout << "Text: " << text << "\nTMC: ";
+	cout << "TMC: ";
+	vector<string> tmc = encode(text, key);
+	for (string s : tmc)
 		cout << s;
 	cout << endl;
+
+	cout << "Text: " << decode(tmc, key) << endl;
 }
