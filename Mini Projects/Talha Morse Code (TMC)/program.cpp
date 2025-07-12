@@ -73,24 +73,30 @@ string decode(vector<string> tmc, unordered_map<char, char> key)
 	return text;
 }
 
+// ? Display TMC
+void display(vector<string> tmc)
+{
+	for (string s : tmc)
+		cout << s << ' ';
+	cout << endl;
+}
+
 int main()
 {
 	unordered_map<char, char> key;
 	key['0'] = '.';
 	key['1'] = '~';
 	key['2'] = '|';
-	
+
 	key['.'] = '0';
 	key['~'] = '1';
 	key['|'] = '2';
 
-	string text = "My name is Talha Ahmad";
+	string text = "Talha Ahmad";
 	// cout << "Text: " << text << "\nTMC: ";
 	cout << "TMC: ";
 	vector<string> tmc = encode(text, key);
-	for (string s : tmc)
-		cout << s;
-	cout << endl;
+	display(tmc);
 
 	cout << "Text: " << decode(tmc, key) << endl;
 }
