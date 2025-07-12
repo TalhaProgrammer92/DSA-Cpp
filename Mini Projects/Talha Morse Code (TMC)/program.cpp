@@ -42,37 +42,37 @@ class Conversion
 {
 public:
 	// * Number -> Base n
-	static string to_base(int number, int base){{string bn = "";
-
-	while (number > 0)
+	static string to_base(int number, int base)
 	{
-		bn = to_string(number % base) + bn;
-		number /= base;
+		string bn = "";
+
+		while (number > 0)
+		{
+			bn = to_string(number % base) + bn;
+			number /= base;
+		}
+
+		return bn;
 	}
 
-	return bn;
-}
+	// * Base n -> Number
+	static int to_number(string number, int base)
+	{
+		int num = 0;
 
-// * Base n -> Number
-static int
-to_number(string number, int base)
-{
-	int number = 0;
+		for (int i = 0; i < number.length(); i++)
+			num += pow(base, number.length() - i - 1) * base;
 
-	for (int i = 0; i < number.length(); i++)
-		number += pow(base, number.length() - i - 1) * base;
-
-	return number;
-}
-}
-;
+		return num;
+	}
+};
 
 // ? Parser
 class Parser
 {
 public:
 	// * Number -> Morse
-	string to_morse(string number, Key &key)
+	static string to_morse(string number, Key &key)
 	{
 		string morse = "";
 
@@ -83,7 +83,7 @@ public:
 	}
 
 	// * Morse -> Number
-	string to_number(string morse, Key &key)
+	static string to_number(string morse, Key &key)
 	{
 		string number = "";
 
