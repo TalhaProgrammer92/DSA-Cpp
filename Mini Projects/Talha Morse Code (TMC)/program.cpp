@@ -58,10 +58,11 @@ public:
 	// * Base n -> Number
 	static int to_number(string number, int base)
 	{
-		int num = 0;
+		int num = 0, limit = number.length();
 
-		for (int i = 0; i < number.length(); i++)
-			num += pow(base, number.length() - i - 1) * base;
+		for (int i = 0; i < limit; i++)
+			// num += pow(number[i] - '0', limit - i - 1) * base;
+			num += pow(base, limit - i - 1) * (number[i] - '0');
 
 		return num;
 	}
@@ -124,6 +125,7 @@ public:
 		{
 			// ! Get morse number
 			string number = Parser::to_number(morse, key);
+			// cout << number << endl;
 
 			// ! Add number to text
 			text += Conversion::to_number(number, key.get_base());
@@ -148,4 +150,5 @@ int main()
 	string text = "Talha";
 	vector<string> tmc = TalhaMorseCode::encode(text, key);
 	display(tmc);
+	cout << TalhaMorseCode::decode(tmc, key) << endl;
 }
