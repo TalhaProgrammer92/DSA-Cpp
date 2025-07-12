@@ -14,11 +14,27 @@ class Key
 
 public:
 	// * Constructor
-	Key(vector<char> symbols);
+	Key(vector<char> symbols)
+	{
+		base = symbols.size();
+
+		for (int i = 0; i < base; i++)
+		{
+			key[i + '0'] = symbols[i];
+			key[symbols[i]] = i + '0';
+		}
+	}
 
 	// * Getters
-	int get_base();
-	char get_value(char key);
+	int get_base()
+	{
+		return base;
+	}
+
+	char get_value(char key)
+	{
+		return this->key[key];
+	}
 };
 
 // ? Conversion
@@ -26,71 +42,7 @@ class Conversion
 {
 public:
 	// * Number -> Base n
-	static string to_base(int number, int base);
-
-	// * Base n -> Number
-	static int to_number(string number, int base);
-};
-
-// ? Parser
-class Parser
-{
-public:
-	// * Number -> Morse
-	string to_morse(string number, Key &key);
-
-	// * Morse -> Number
-	string to_number(string morse, Key &key);
-};
-
-// ? TMC
-class TalhaMorseCode
-{
-public:
-	// * Encoder
-	static vector<string> encode(string &text, Key &key);
-
-	// * Decoder
-	static string decode(vector<string> &code, Key &key);
-};
-
-// ? Entry Point
-int main()
-{
-}
-
-// ? Key
-
-// * Constructor
-Key::Key(vector<char> symbols)
-{
-	base = symbols.size();
-
-	for (int i = 0; i < base; i++)
-	{
-		key[i + '0'] = symbols[i];
-		key[symbols[i]] = i + '0';
-	}
-}
-
-// * Getters
-
-int Key::get_base()
-{
-	return base;
-}
-
-char Key::get_value(char key)
-{
-	return this->key[key];
-}
-
-// ? Conversion
-
-// * Number -> Base n
-static string Conversion::to_base(int number, int base)
-{
-	string bn = "";
+	static string to_base(int number, int base){{string bn = "";
 
 	while (number > 0)
 	{
@@ -102,7 +54,8 @@ static string Conversion::to_base(int number, int base)
 }
 
 // * Base n -> Number
-static int Conversion::to_number(string number, int base)
+static int
+to_number(string number, int base)
 {
 	int number = 0;
 
@@ -111,64 +64,76 @@ static int Conversion::to_number(string number, int base)
 
 	return number;
 }
+}
+;
 
 // ? Parser
-
-// * Number -> Morse
-
-static string Parser::to_morse(string number, Key &key)
+class Parser
 {
-	string morse = "";
+public:
+	// * Number -> Morse
+	string to_morse(string number, Key &key)
+	{
+		string morse = "";
 
-	for (char n : number)
-		morse += string(1, key.get_value(n));
+		for (char n : number)
+			morse += string(1, key.get_value(n));
 
-	return morse;
-}
+		return morse;
+	}
 
-// * Morse -> Number
-static string Parser::to_number(string morse, Key &key)
-{
-	string number = "";
+	// * Morse -> Number
+	string to_number(string morse, Key &key)
+	{
+		string number = "";
 
-	for (char m : morse)
-		number += string(1, key.get_value(m));
+		for (char m : morse)
+			number += string(1, key.get_value(m));
 
-	return number;
-}
+		return number;
+	}
+};
 
 // ? TMC
-
-// * Encoder
-vector<string> TalhaMorseCode::encode(string &text, Key &key)
+class TalhaMorseCode
 {
-	vector<string> tmc;
-
-	for (char c : text)
+public:
+	// * Encoder
+	static vector<string> encode(string &text, Key &key)
 	{
-		// ! Get morse number
-		string number = Conversion::to_base(c, key.get_base());
-		
-		// ! Push morse code to TMC
-		tmc.push_back(Parser::to_morse(number, key));
+		vector<string> tmc;
+
+		for (char c : text)
+		{
+			// ! Get morse number
+			string number = Conversion::to_base(c, key.get_base());
+
+			// ! Push morse code to TMC
+			tmc.push_back(Parser::to_morse(number, key));
+		}
+
+		return tmc;
 	}
 
-	return tmc;
-}
-
-// * Decoder
-string TalhaMorseCode::decode(vector<string> &code, Key &key)
-{
-	string text = "";
-
-	for (string morse : code)
+	// * Decoder
+	static string decode(vector<string> &code, Key &key)
 	{
-		// ! Get morse number
-		string number = Parser::to_number(morse, key);
+		string text = "";
 
-		// ! Add number to text
-		text += Conversion::to_number(number, key.get_base());
+		for (string morse : code)
+		{
+			// ! Get morse number
+			string number = Parser::to_number(morse, key);
+
+			// ! Add number to text
+			text += Conversion::to_number(number, key.get_base());
+		}
+
+		return text;
 	}
+};
 
-	return text;
+// ? Entry Point
+int main()
+{
 }
