@@ -5,98 +5,170 @@
 
 using namespace std;
 
-// ? Decimal (ASCII) -> Ternary (base 3)
-string ascii_to_ternary(int ascii)
+// ? Key
+class Key
 {
-	// * To store ternary
-	string ternary = "";
+	// * Attributes
+	unordered_map<char, char> key;
+	int base;
 
-	// * Conversion
-	while (ascii > 0)
+public:
+	// * Constructor
+	Key(vector<char> symbols);
+
+	// * Getters
+	int get_base();
+	char get_value(char key);
+};
+
+// ? Conversion
+class Conversion
+{
+public:
+	// * Number -> Base n
+	static string to_base(int number, int base);
+
+	// * Base n -> Number
+	static int to_number(string number, int base);
+};
+
+// ? Parser
+class Parser
+{
+public:
+	// * Number -> Morse
+	string to_morse(string number, Key &key);
+
+	// * Morse -> Number
+	string to_number(string morse, Key &key);
+};
+
+// ? TMC
+class TalhaMorseCode
+{
+public:
+	// * Encoder
+	static vector<string> encode(string &text, Key &key);
+
+	// * Decoder
+	static string decode(vector<string> &code, Key &key);
+};
+
+// ? Entry Point
+int main()
+{
+}
+
+// ? Key
+
+// * Constructor
+Key::Key(vector<char> symbols)
+{
+	base = symbols.size();
+
+	for (int i = 0; i < base; i++)
 	{
-		ternary = to_string(ascii % 3) + ternary;
-		ascii /= 3;
+		key[i + '0'] = symbols[i];
+		key[symbols[i]] = i + '0';
+	}
+}
+
+// * Getters
+
+int Key::get_base()
+{
+	return base;
+}
+
+char Key::get_value(char key)
+{
+	return this->key[key];
+}
+
+// ? Conversion
+
+// * Number -> Base n
+static string Conversion::to_base(int number, int base)
+{
+	string bn = "";
+
+	while (number > 0)
+	{
+		bn = to_string(number % base) + bn;
+		number /= base;
 	}
 
-	return ternary;
+	return bn;
 }
 
-// ? Ternary (Base 3) -> Decimal (ASCII)
-char ternary_to_ascii(string ternary)
+// * Base n -> Number
+static int Conversion::to_number(string number, int base)
 {
-	// * To store ASCII
-	int ascii = 0, limit = ternary.length();
+	int number = 0;
 
-	// * Conversion
-	for (int i = 0; i < limit; i++)
-		ascii += (ternary[i] - '0') * pow(3, limit - i - 1);
+	for (int i = 0; i < number.length(); i++)
+		number += pow(base, number.length() - i - 1) * base;
 
-	return ascii;
+	return number;
 }
 
-// ? Parse Ternary for TMC
-string parse_ternary(string ternary, unordered_map<char, char> key)
+// ? Parser
+
+// * Number -> Morse
+
+static string Parser::to_morse(string number, Key &key)
 {
-	string tmc = "";
+	string morse = "";
 
-	for (char c : ternary)
-		tmc += key[c];
+	for (char n : number)
+		morse += string(1, key.get_value(n));
 
-	return tmc;
+	return morse;
 }
 
-// ? Parse TMC for Ternary
-string parse_tmc(string tmc_string, unordered_map<char, char> key)
+// * Morse -> Number
+static string Parser::to_number(string morse, Key &key)
 {
-	return parse_ternary(tmc_string, key);
+	string number = "";
+
+	for (char m : morse)
+		number += string(1, key.get_value(m));
+
+	return number;
 }
 
-// ? Encoder
-vector<string> encode(string text, unordered_map<char, char> key)
+// ? TMC
+
+// * Encoder
+vector<string> TalhaMorseCode::encode(string &text, Key &key)
 {
 	vector<string> tmc;
 
 	for (char c : text)
-		tmc.push_back(parse_ternary(ascii_to_ternary(c), key));
+	{
+		// ! Get morse number
+		string number = Conversion::to_base(c, key.get_base());
+		
+		// ! Push morse code to TMC
+		tmc.push_back(Parser::to_morse(number, key));
+	}
 
 	return tmc;
 }
 
-// ? Decoder
-string decode(vector<string> tmc, unordered_map<char, char> key)
+// * Decoder
+string TalhaMorseCode::decode(vector<string> &code, Key &key)
 {
 	string text = "";
 
-	for (string s : tmc)
-		text += string(1, ternary_to_ascii(parse_tmc(s, key)));
+	for (string morse : code)
+	{
+		// ! Get morse number
+		string number = Parser::to_number(morse, key);
+
+		// ! Add number to text
+		text += Conversion::to_number(number, key.get_base());
+	}
 
 	return text;
-}
-
-// ? Display TMC
-void display(vector<string> tmc)
-{
-	for (string s : tmc)
-		cout << s << ' ';
-	cout << endl;
-}
-
-int main()
-{
-	unordered_map<char, char> key;
-	key['0'] = '.';
-	key['1'] = '~';
-	key['2'] = '|';
-
-	key['.'] = '0';
-	key['~'] = '1';
-	key['|'] = '2';
-
-	string text = "Talha Ahmad";
-	// cout << "Text: " << text << "\nTMC: ";
-	cout << "TMC: ";
-	vector<string> tmc = encode(text, key);
-	display(tmc);
-
-	cout << "Text: " << decode(tmc, key) << endl;
 }
