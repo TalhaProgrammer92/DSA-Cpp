@@ -44,25 +44,33 @@ public:
 	}
 };
 
-// ? Parser
-class Parser
-{
-public:
-	// * Text -> Morse
-	static vector<string> to_morse(string text, Ket &key)
-	{
-		vector<string> morse;
-
-		return morse;
-	}
-};
-
 // ? TMC
 class TalhaMorseCode
 {
 public:
 	// * Encoder
-	static vector<string> encode(string &text, Key &key);
+	static vector<string> encode(string &text, Key &key)
+	{
+		vector<string> morse;
+
+		// ! Parse
+		for (char c : text)
+		{
+			string s = "";
+			int num = c;
+
+			// ! Convert
+			while (num > 0)
+			{
+				s = string(1, key.get_symbol(num % key.get_base())) + s;
+				num /= key.get_base();
+			}
+
+			morse.push_back(s);
+		}
+
+		return morse;
+	}
 
 	// * Decoder
 	static string decode(vector<string> &code, Key &key);
