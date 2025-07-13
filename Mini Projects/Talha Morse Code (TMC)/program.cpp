@@ -73,7 +73,25 @@ public:
 	}
 
 	// * Decoder
-	static string decode(vector<string> &code, Key &key);
+	static string decode(vector<string> &morse, Key &key)
+	{
+		string text = "";
+
+		// ! Parse
+		for (string s : morse)
+		{
+			char chr = 0;
+
+			for (int i = 0; i < s.length(); i++)
+			{
+				chr += key.get_number(s[i]) * pow(key.get_base(), s.length() - i - 1);
+			}
+
+			text += string(1, chr);
+		}
+
+		return text;
+	}
 };
 
 // ? Display TMC
@@ -87,9 +105,12 @@ void display(vector<string> &tmc)
 // ? Entry Point
 int main()
 {
-	// Key key({'+', '-', '*', '/', '<', '>', '(', ')', '[', ']'});
-	// string text = "The quick brown fox jumps over a lazy dog";
-	// vector<string> tmc = TalhaMorseCode::encode(text, key);
-	// display(tmc);
-	// cout << TalhaMorseCode::decode(tmc, key) << endl;'
+	Key key({'!', '@', '#', '$', '%', '^', '&', '*', '(', ')'});
+	
+	string text = "The quick brown fox jumps over a lazy dog";
+
+	vector<string> tmc = TalhaMorseCode::encode(text, key);
+	cout << "TMC: "; display(tmc);
+	
+	cout << "Text: " << TalhaMorseCode::decode(tmc, key) << endl;
 }
