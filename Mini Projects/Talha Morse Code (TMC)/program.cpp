@@ -9,7 +9,8 @@ using namespace std;
 class Key
 {
 	// * Attributes
-	unordered_map<char, char> key;
+	unordered_map<int, char> symbol_map;
+	unordered_map<char, int> number_map;
 	int base;
 
 public:
@@ -20,8 +21,9 @@ public:
 
 		for (int i = 0; i < base; i++)
 		{
-			key[i + '0'] = symbols[i];
-			key[symbols[i]] = i + '0';
+			char symbol = symbols[i];
+			symbol_map[i] = symbol;
+			number_map[symbol] = i;
 		}
 	}
 
@@ -31,40 +33,14 @@ public:
 		return base;
 	}
 
-	char get_value(char key)
+	char get_number(char symbol)
 	{
-		return this->key[key];
-	}
-};
-
-// ? Conversion
-class Conversion
-{
-public:
-	// * Number -> Base n
-	static string to_base(int number, int base)
-	{
-		string bn = "";
-
-		while (number > 0)
-		{
-			bn = to_string(number % base) + bn;
-			number /= base;
-		}
-
-		return bn;
+		return number_map[symbol];
 	}
 
-	// * Base n -> Number
-	static int to_number(string number, int base)
+	int get_symbol(int number)
 	{
-		int num = 0, limit = number.length();
-
-		for (int i = 0; i < limit; i++)
-			// num += pow(number[i] - '0', limit - i - 1) * base;
-			num += pow(base, limit - i - 1) * (number[i] - '0');
-
-		return num;
+		return symbol_map[number];
 	}
 };
 
@@ -72,26 +48,12 @@ public:
 class Parser
 {
 public:
-	// * Number -> Morse
-	static string to_morse(string number, Key &key)
+	// * Text -> Morse
+	static vector<string> to_morse(string text, Ket &key)
 	{
-		string morse = "";
-
-		for (char n : number)
-			morse += string(1, key.get_value(n));
+		vector<string> morse;
 
 		return morse;
-	}
-
-	// * Morse -> Number
-	static string to_number(string morse, Key &key)
-	{
-		string number = "";
-
-		for (char m : morse)
-			number += string(1, key.get_value(m));
-
-		return number;
 	}
 };
 
@@ -100,39 +62,10 @@ class TalhaMorseCode
 {
 public:
 	// * Encoder
-	static vector<string> encode(string &text, Key &key)
-	{
-		vector<string> tmc;
-
-		for (char c : text)
-		{
-			// ! Get morse number
-			string number = Conversion::to_base(c, key.get_base());
-
-			// ! Push morse code to TMC
-			tmc.push_back(Parser::to_morse(number, key));
-		}
-
-		return tmc;
-	}
+	static vector<string> encode(string &text, Key &key);
 
 	// * Decoder
-	static string decode(vector<string> &code, Key &key)
-	{
-		string text = "";
-
-		for (string morse : code)
-		{
-			// ! Get morse number
-			string number = Parser::to_number(morse, key);
-			// cout << number << endl;
-
-			// ! Add number to text
-			text += Conversion::to_number(number, key.get_base());
-		}
-
-		return text;
-	}
+	static string decode(vector<string> &code, Key &key);
 };
 
 // ? Display TMC
@@ -146,9 +79,9 @@ void display(vector<string> &tmc)
 // ? Entry Point
 int main()
 {
-	Key key({'+', '-', '*', '/', '<', '>', '(', ')', '[', ']'});
-	string text = "The quick brown fox jumps over a lazy dog";
-	vector<string> tmc = TalhaMorseCode::encode(text, key);
-	display(tmc);
-	cout << TalhaMorseCode::decode(tmc, key) << endl;
+	// Key key({'+', '-', '*', '/', '<', '>', '(', ')', '[', ']'});
+	// string text = "The quick brown fox jumps over a lazy dog";
+	// vector<string> tmc = TalhaMorseCode::encode(text, key);
+	// display(tmc);
+	// cout << TalhaMorseCode::decode(tmc, key) << endl;'
 }
