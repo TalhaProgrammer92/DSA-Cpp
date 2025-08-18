@@ -167,7 +167,7 @@ public:
 };
 
 // * Function - Swap two nodes
-void swap(Node *node1, Node *node2)
+void swap_nodes(Node *node1, Node *node2)
 {
     // ? Store neibour conenctions
     Node *temp1 = node1->previous, *temp2 = node2->next;
@@ -179,11 +179,11 @@ void swap(Node *node1, Node *node2)
 
     // ? reconnect node1
     node1->next = temp2;
-    node2->previous = node2;
+    node1->previous = node2;
 }
 
 // * Function - Bubble sort
-void sort(LinkedList &list)
+void sort_list(LinkedList &list)
 {
     for (int i = 0; i < list.get_size() - 1; i++)
     {
@@ -193,10 +193,11 @@ void sort(LinkedList &list)
         {
             Node *a = list.getAt(j), *b = a->next;
 
+            // ? Swap
             if (a->value > b->value)
             {
                 swapped = true;
-                swap(a, b);
+                swap_nodes(a, b);
             }
         }
 
@@ -214,7 +215,7 @@ int main()
     list.push_back(4);
     list.push_back(3);
 
-    list.print();
-    sort(list);
-    list.print();
+    cout << "Unsorted: "; list.print();
+    sort_list(list);
+    cout << "Sorted: "; list.print();
 }
