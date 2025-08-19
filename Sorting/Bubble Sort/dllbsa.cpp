@@ -18,12 +18,36 @@ public:
 class LinkedList
 {
     // * Attributes
-    Node *head, *tail;
     int size;
-
+    Node *head, *tail;
+    
 public:
     // * Constructor
     LinkedList() : head(NULL), tail(NULL), size(0) {}
+
+    // * Getters
+    Node *get_head()
+    {
+        return head;
+    }
+
+    Node *get_tail()
+    {
+        return tail;
+    }
+
+    // * Setters
+    void set_head(Node *head)
+    {
+        if (head != NULL)
+            this->head = head;
+    }
+
+    void set_tail(Node *tail)
+    {
+        if (tail != NULL)
+            this->tail = tail;
+    }
 
     // * Method - Add a node at front
     void push_front(int value)
@@ -139,7 +163,10 @@ public:
     // * Method - Get a node at particular index
     Node *getAt(const unsigned int &index)
     {
-        if (index <= size)
+        if (index == 0)
+            return head;
+
+        if (index < size)
         {
             Node *node = head;
 
@@ -148,6 +175,13 @@ public:
 
             return node;
         }
+    }
+
+    // * Method - Refresh h/t
+    void refresh()
+    {
+        head->previous = NULL;
+        tail->next = NULL;
     }
 
     // * Method - Print the list
@@ -166,43 +200,71 @@ public:
     }
 };
 
+// * Function - Connect both nodes
+void connect_nodes(Node *node1, Node *node2)
+{
+    node1->next = node2;
+    node2->previous = node1;
+}
+
 // * Function - Swap two nodes
 void swap_nodes(Node *node1, Node *node2)
 {
     // ? Store neibour conenctions
-    Node *temp1 = node1->previous, *temp2 = node2->next;
+    // Node *left_node = node1->previous, *right_node = node2->next;
 
-    // ? reconnect node2
-    temp1->next = node2;
-    node2->previous = temp1;
-    node2->next = node1;
+    // ? Establish new connections
+    // connect_nodes(left_node, node2);
+    // connect_nodes(node1, right_node);
+    // connect_nodes(node2, node1);
 
-    // ? reconnect node1
-    node1->next = temp2;
-    node1->previous = node2;
+    // ? Swap
+    Node *temp = node1;
+    node1 = node2;
+    node2 = temp;
 }
 
 // * Function - Bubble sort
 void sort_list(LinkedList &list)
 {
+    // Node *head = list.get_head(), *tail = list.get_tail(), *large = tail, *small = head;
+
     for (int i = 0; i < list.get_size() - 1; i++)
     {
         bool swapped = false;
 
+        // ! Bug - Destroy connections during swapping
         for (int j = 0; j < list.get_size() - i - 1; j++)
         {
             Node *a = list.getAt(j), *b = a->next;
+            cout << "\na = " << a->value << ", b = " << b->value << endl;
+            // // ? Find Large - Tail
+            // if (a->value > large->value)
+            //     large = a;
+            // else if (b->value > large->value)
+            //     large = b;
+            
+            // // ? Find Small - Head
+            // if (a->value < small->value)
+            //     small = a;
+            // else if (b->value < small->value)
+            //     small = b;
 
             // ? Swap
             if (a->value > b->value)
             {
                 swapped = true;
                 swap_nodes(a, b);
+                cout << "a = " << a->value << ", b = " << b->value << endl;
             }
         }
 
         if (!swapped) break;
     }
+
+    // list.set_head(small);
+    // list.set_tail(large);
+    // list.refresh();
 }
 
 int main()
