@@ -33,3 +33,10 @@
 
 # Other
 desktop.ini
+*.pdf
+*.ppt
+*.pptx
+*.doc
+*.docx
+*.xls
+*.xlsx
