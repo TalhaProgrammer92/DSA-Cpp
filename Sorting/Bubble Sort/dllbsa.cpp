@@ -161,7 +161,7 @@ public:
     }
 
     // * Method - Get a node at particular index
-    Node *getAt(const unsigned int &index)
+    Node *getAt(const int &index)
     {
         if (index == 0)
             return head;
@@ -170,7 +170,7 @@ public:
         {
             Node *node = head;
 
-            for (int i = 0; i <= index; i++)
+            for (int i = 0; i < index; i++)
                 node = node->next;
 
             return node;
@@ -211,17 +211,17 @@ void connect_nodes(Node *node1, Node *node2)
 void swap_nodes(Node *node1, Node *node2)
 {
     // ? Store neibour conenctions
-    // Node *left_node = node1->previous, *right_node = node2->next;
+    Node *left_node = node1->previous, *right_node = node2->next;
 
     // ? Establish new connections
-    // connect_nodes(left_node, node2);
-    // connect_nodes(node1, right_node);
-    // connect_nodes(node2, node1);
+    connect_nodes(left_node, node2);
+    connect_nodes(node1, right_node);
+    connect_nodes(node2, node1);
 
     // ? Swap
-    Node *temp = node1;
-    node1 = node2;
-    node2 = temp;
+    // Node *temp = node1;
+    // node1 = node2;
+    // node2 = temp;
 }
 
 // * Function - Bubble sort
@@ -256,6 +256,7 @@ void sort_list(LinkedList &list)
                 swapped = true;
                 swap_nodes(a, b);
                 cout << "a = " << a->value << ", b = " << b->value << endl;
+                // cout << "Swap!" << endl;
             }
         }
 
