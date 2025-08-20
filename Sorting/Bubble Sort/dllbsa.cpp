@@ -200,34 +200,39 @@ public:
     }
 };
 
-// * Function - Connect both nodes
-void connect_nodes(Node *node1, Node *node2)
-{
-    node1->next = node2;
-    node2->previous = node1;
-}
-
 // * Function - Swap two nodes
 void swap_nodes(Node *node1, Node *node2)
 {
-    // ? Store neibour conenctions
-    Node *left_node = node1->previous, *right_node = node2->next;
+    // ? Left and Right Nodes
+    Node *left = node1->previous;
+    Node *right = node2->next;
 
-    // ? Establish new connections
-    connect_nodes(left_node, node2);
-    connect_nodes(node1, right_node);
-    connect_nodes(node2, node1);
+    // ? Connect node2 with left node
+    node2->previous = left;
 
-    // ? Swap
-    // Node *temp = node1;
-    // node1 = node2;
-    // node2 = temp;
+    // ? Connext node1 with right node
+    node1->next = right;
+
+    // ? Connect node1 with node2
+    node1->previous = node2;
+
+    // ? Connect left node with node2
+    if (left != NULL)
+        left->next = node2;
+    
+    // ? Connect node1 with node2
+    node2->next = node1;
+
+    // ? Connect right node with node1
+    if (right != NULL)
+        right->previous = node1;
 }
 
 // * Function - Bubble sort
 void sort_list(LinkedList &list)
 {
     // Node *head = list.get_head(), *tail = list.get_tail(), *large = tail, *small = head;
+    Node *smallest = list.get_head();
 
     for (int i = 0; i < list.get_size() - 1; i++)
     {
@@ -237,25 +242,21 @@ void sort_list(LinkedList &list)
         for (int j = 0; j < list.get_size() - i - 1; j++)
         {
             Node *a = list.getAt(j), *b = a->next;
-            cout << "\na = " << a->value << ", b = " << b->value << endl;
-            // // ? Find Large - Tail
-            // if (a->value > large->value)
-            //     large = a;
-            // else if (b->value > large->value)
-            //     large = b;
+            // cout << "\na = " << a->value << ", b = " << b->value << endl;
             
-            // // ? Find Small - Head
-            // if (a->value < small->value)
-            //     small = a;
-            // else if (b->value < small->value)
-            //     small = b;
+            // ? Smallest will be head
+            if (a->value < smallest->value)
+                smallest = a;
+            else if (b->value < smallest->value)
+                smallest = b;
 
             // ? Swap
             if (a->value > b->value)
             {
                 swapped = true;
                 swap_nodes(a, b);
-                cout << "a = " << a->value << ", b = " << b->value << endl;
+                // cout << "a = " << a->value << ", b = " << b->value << " [Swapped] " << endl;
+                // list.print();
                 // cout << "Swap!" << endl;
             }
         }
@@ -266,6 +267,8 @@ void sort_list(LinkedList &list)
     // list.set_head(small);
     // list.set_tail(large);
     // list.refresh();
+    list.push_front(smallest->value);
+    delete smallest;
 }
 
 int main()
@@ -276,6 +279,7 @@ int main()
     list.push_back(5);
     list.push_back(1);
     list.push_back(4);
+    list.push_back(6);
     list.push_back(3);
 
     cout << "Unsorted: "; list.print();
